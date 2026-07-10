@@ -5,3 +5,15 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = []
+
+[project.scripts]
+pipe = "mpx.pipe:main"
+futures = "mpx.futures:main"
+queues = "mpx.queues:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

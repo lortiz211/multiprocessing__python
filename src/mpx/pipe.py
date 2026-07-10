@@ -9,7 +9,7 @@ def f(conn):
     conn.close()
 
 
-def pipe_main():
+def main():
     parent_conn, child_conn = Pipe()
     process = Process(target=f, args=(child_conn,))
     process.start()

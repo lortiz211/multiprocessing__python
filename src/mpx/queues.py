@@ -72,7 +72,7 @@ def all_source(path: Path, pattern: str) -> Iterator[Path]:
         yield from (Path(root) / f for f in files if fnmatch(f, pattern))
 
 
-if __name__ == "__main__":
+def main():
     ds = DirectorySearch()
     base = Path.cwd().parent
     all_paths = list(all_source(base, "*.py"))

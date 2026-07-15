@@ -10,6 +10,9 @@ dependencies = []
 pipe = "mpx.pipe:main"
 futures = "mpx.futures:main"
 queues = "mpx.queues:main"
+asyncawait = "mpx.asyncawait:main"
+philo = "mpx.philosopher:runner"
+inherit = "chapt3.inherit:main"
 
 [build-system]
 requires = ["setuptools>=68"]

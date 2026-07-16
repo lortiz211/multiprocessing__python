@@ -1,5 +1,5 @@
-from typing import ClassVar, Any, Protocol
 from pprint import pprint
+from typing import Any, ClassVar, Protocol
 
 
 # Adding Protocol classes
@@ -25,12 +25,12 @@ class ContactList(list["Contact"]):
 class Contact:
     all_contacts: ClassVar[ContactList] = ContactList()
 
-    def __init__(self, name: str, email: str):
+    def __init__(self, name: str, email: str) -> None:
         self.name = name
         self.email = email
         Contact.all_contacts.append(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.name}, {self.email})"
 
 
@@ -46,10 +46,11 @@ class EmailableContact(Contact, MailSender):
     pass
 
 
-def main():
+def main() -> None:
     c1 = Contact("Some Body", "some.body@email.com")
-    s1 = Supplier("Su Plier", "suplier@email.com")
-    e1 = EmailableContact("Email Lable", "emailable@email.com")
+    # created for their side effect of registering in Contact.all_contacts
+    Supplier("Su Plier", "suplier@email.com")
+    EmailableContact("Email Lable", "emailable@email.com")
 
     pprint(c1.all_contacts)
     pprint(c1.all_contacts.search("John"))

@@ -1,7 +1,8 @@
-from multiprocessing import Process, Pipe
+from multiprocessing import Pipe, Process
+from multiprocessing.connection import Connection
 
 
-def f(conn):
+def f(conn: Connection) -> None:
     # sends data to the reciever
     conn.send([42, None, "Hello"])
     conn.send([84, None, "There"])
@@ -9,7 +10,7 @@ def f(conn):
     conn.close()
 
 
-def main():
+def main() -> None:
     parent_conn, child_conn = Pipe()
     process = Process(target=f, args=(child_conn,))
     process.start()

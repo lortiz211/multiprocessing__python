@@ -1,10 +1,9 @@
 import os
 import time
-
 from collections.abc import Iterator
-from pathlib import Path
-from multiprocessing import Queue, Process, cpu_count
 from fnmatch import fnmatch
+from multiprocessing import Process, Queue, cpu_count
+from pathlib import Path
 
 type Query_Q = Queue[str | None]
 type Result_Q = Queue[list[str]]
@@ -72,7 +71,7 @@ def all_source(path: Path, pattern: str) -> Iterator[Path]:
         yield from (Path(root) / f for f in files if fnmatch(f, pattern))
 
 
-def main():
+def main() -> None:
     ds = DirectorySearch()
     base = Path.cwd().parent
     all_paths = list(all_source(base, "*.py"))
@@ -88,7 +87,8 @@ def main():
 
         milliseconds = 1000 * (time.perf_counter() - start)
         print(
-            f"Found {count} {target!r} in {len(all_paths)} files in {milliseconds:.3f}ms"
+            f"Found {count} {target!r} in {len(all_paths)} files "
+            f"in {milliseconds:.3f}ms"
         )
 
     ds.teardow_search()

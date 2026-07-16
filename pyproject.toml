@@ -20,3 +20,29 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15",
+    "ty>=0.0.60",
+]
+
+[tool.ruff]
+src = ["src"]
+target-version = "py314"
+
+[tool.ruff.lint]
+# E/F = pyflakes+pycodestyle, I = import sorting, ANN = type-hint presence
+select = ["E", "F", "I", "ANN"]
+ignore = [
+    "ANN401",  # allow explicit `typing.Any` in annotations
+]
+
+[tool.ty.environment]
+python = "./.venv"
+python-version = "3.14"
+root = ["./src"]
+
+[tool.ty.terminal]
+error-on-warning = true
+

@@ -16,6 +16,6 @@ async def sleepers(how_many: int = 5) -> None:
     await asyncio.gather(*tasks)
 
 
-def main():
+def main() -> None:
     asyncio.run(sleepers(5))
     print("Done with sleepers")

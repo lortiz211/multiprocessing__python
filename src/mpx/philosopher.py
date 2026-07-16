@@ -1,6 +1,6 @@
-from types import GeneratorType, CoroutineType
 import asyncio
 import random
+from types import CoroutineType, GeneratorType
 
 FORKS: list[asyncio.Lock]
 
@@ -31,5 +31,5 @@ async def main(faculty: int = 5, servings: int = 5) -> None:
         print(results)
 
 
-def runner():
+def runner() -> None:
     asyncio.run(main(5, 1))

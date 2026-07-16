@@ -2,11 +2,10 @@ import ast
 import os
 import time
 import typing
-
 from concurrent import futures
 from fnmatch import fnmatch
 from pathlib import Path
-from typing import NamedTuple, Iterator
+from typing import Iterator, NamedTuple
 
 
 def all_source(path: Path, pattern: str) -> Iterator[Path]:
@@ -28,7 +27,7 @@ class ImportResult(NamedTuple):
 
 
 class ImportVisitor(ast.NodeVisitor):
-    def __init__(self):
+    def __init__(self) -> None:
         self.imports: set[str] = set()
 
     def visit_Import(self, node: ast.Import) -> None:
